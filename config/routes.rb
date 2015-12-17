@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  ######sesssions
+  ######SESSIONS
   root 'sessions#new'
 
   get 'sessions/new'
