@@ -1,4 +1,24 @@
 Rails.application.routes.draw do
+  get 'likes/:id/create' => 'likes#create'
+
+  delete 'likes/:id' => 'likes#destroy'
+
+  get 'bright_ideas' => 'ideas#index'
+
+  get 'ideas/:id' => 'ideas#show'
+
+  post 'ideas' => 'ideas#create'
+
+  delete 'ideas/:id' => 'ideas#destroy'
+
+  post 'users' => 'users#create'
+
+  get 'users/:id' => 'users#show'
+
+  get 'users/edit'
+
+  get 'users/update'
+
   ######SESSIONS
   root 'sessions#new'
 

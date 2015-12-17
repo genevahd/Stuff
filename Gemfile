@@ -37,7 +37,7 @@ group :test do
   gem 'capybara'
 end
 
-gem 'rails-footnotes', '>= 4.0.0', '<5'
+# gem 'rails-footnotes', '>= 4.0.0', '<5'
 
 gem 'hirb'
 

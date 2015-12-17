@@ -1,0 +1,63 @@
+<a href="/sessions/destroy"><button style="margin: 10px" class="btn btn-danger pull-right">Logout</button></a> 
+<h1>Hello, <%= @user.name %></h1>
+
+<div class="row">
+<div class="col-md-6">
+<form action="/ideas" method="post" role="form">
+		<input type ="hidden" name="authenticity_token" method="post" value="<%= form_authenticity_token %>">
+	    	<div class="row">
+	    		<h5>Post something witty!</h5>
+	    	</div>
+	    	<div class="row">
+	    		<textarea class="col-md-6" name="content" placeholder="......"></textarea>
+	    	</div>
+		<div class="row">
+	    	<button class="btn btn-primary col-md-6" style="margin-top:10px" type='submit'>Submit</button>
+	    </div>
+	</form>
+	<div class="row" style="height: 50px;">
+	    	<% if flash[:errors]%>
+		 	<% flash[:errors].each do |e| %>
+				<p class="col-md-6 text-center" style="color: red"><%= e %></p>
+			<%	end %>
+			<% elsif flash[:success] %>
+				<p class="col-md-6 text-center" style="color: green"><%= flash[:success] %></p>
+			<% end %>
+	</div>	
+</div>
+</div>
+<div class="row">
+	<h1 class='text-center'>Ideas</h1>
+	<% @ideas.each do |i| %>		
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<label class="label-control col-md-5 text-right"><a href="/users/<%= i.user.id %>"><%= i.user.alias %></a>
+				 says</label>
+				<div class="col-md-6">
+
+					<p><%= i.content %> </p>
+
+					<% if i.users_liked.include? current_user%>
+							<p><a href="/likes/<%= i.id %>/create">Like Again</a> | <a href="/likes/<%=i.id%>" data-method="delete">Unlike</a>
+						<% else %>
+							<p><a href="/likes/<%= i.id %>/create">Like</a>
+						<% end %>
+					 | This has <a href="/ideas/<%=i.id %>"><%= i.users_liked.count %> Likes</a></p>
+				</div>
+
+				<div class="col-md-1">
+					<% if i.user.id == @user.id %>
+						<a href="/ideas/<%= i.id %>" data-method="delete"> x </a>
+						<% end %>
+				</div>
+
+
+
+
+			</div>
+				
+		</div>
+		<div class="col-md-4">
+		</div>
+	<% end %>
+</div>

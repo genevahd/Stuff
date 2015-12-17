@@ -1,0 +1,23 @@
+<a href="/sessions/destroy"><button style="margin: 10px" class="btn btn-danger pull-right">Logout</button></a> 
+<a href="/bright_ideas"><button style="margin: 10px" class="btn btn-primary pull-right">Back</button></a>
+	<div class="row">
+	<h1><%= @user.alias %></h1>
+	<p><label class="col-md-1 label-control">Name</label>
+	<%= @user.name %></p>
+	<p><label class="col-md-1 label-control">Alias</label>
+	<%= @user.alias %></p>
+	<p><label class="col-md-1 label-control">Email</label>
+	<%= @user.email %></p>
+	<h1> </h1>
+	<table class="table table-hover">
+		<tr><td></td></tr>
+	</table>
+</div>
+<div class="row">
+	<p><label class="col-md-2 label-control">Number of ideas: </label>
+	<%= @user.ideas.count %></p>
+</div>
+<div class="row">
+	<p><label class="col-md-2 label-control">Number of ideas liked: </label>
+		<%= @user.likes.count %></p>
+</div>

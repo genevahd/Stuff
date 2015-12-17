@@ -1,0 +1,31 @@
+<a href="/sessions/destroy"><button style="margin: 10px" class="btn btn-danger pull-right">Logout</button></a> 
+<a href="/bright_ideas"><button style="margin: 10px" class="btn btn-primary pull-right">Back</button></a>
+<h3>Idea:</h3>
+<!-- <div class="row"> -->
+
+<div class="row form-group">
+	<label  class="label-control col-md-2"><h4><%= @idea.user.alias %> says:</h4></label>
+    <label style="font-weight: normal;" class="label-control col-md-3"><%= @idea.content%></label>
+</div>
+<div class="row">
+<div class='col-md-5'>
+<table class="table table-bordered">
+	<thead><h4>People who liked this post:</h4>
+		<th>Alias</th>
+		<th>Name</th>
+		<th>Times Liked</th>
+	</thead>
+	<tbody>
+		<% @idea.users_liked.uniq.each do |u| %> <tr>
+		<td><a href="/users/<%=u.id %>"><%= u.alias %></a></td>
+		<td><%= u.name %></td> 
+
+				<td><%= Like.where(user: u, idea: @idea).count %></td>
+
+		<% end %>
+		
+	</tr>
+	</tbody>
+</table>
+</div>
+</div>
